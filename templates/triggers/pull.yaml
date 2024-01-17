@@ -1,0 +1,32 @@
+
+  source:
+    type: Webhook
+    pollInterval: 2m
+    webhookId: ""
+    spec:
+      type: Github
+      spec:
+        type: PullRequest
+        spec:
+          connectorRef: ${GITHUB_CONNECTOR}
+          autoAbortPreviousExecutions: false
+          payloadConditions: []
+          headerConditions: []
+          repoName: ${REPOSITORY}
+          actions:
+            - Open
+            - Reopen
+            - Edit
+            - Synchronize
+  inputYaml: |
+    pipeline:
+      identifier: ${PIPELINE_ID}
+      template:
+        templateInputs:
+          properties:
+            ci:
+              codebase:
+                build:
+                  type: branch
+                  spec:
+                    branch: <+trigger.branch>

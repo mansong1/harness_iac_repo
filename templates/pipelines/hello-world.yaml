@@ -1,0 +1,10 @@
+
+  template:
+    templateRef: ${TEMPLATE_ID}
+    versionLabel: ${TEMPLATE_VERSION}
+    templateInputs:
+      properties:
+        ci:
+          codebase:
+            repoName: ${REPOSITORY_NAME}
+            build: <+input>

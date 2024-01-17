@@ -1,0 +1,19 @@
+
+  source:
+    type: Webhook
+    pollInterval: 2m
+    webhookId: ""
+    spec:
+      type: Github
+      spec:
+        type: Push
+        spec:
+          connectorRef: ${GITHUB_CONNECTOR}
+          autoAbortPreviousExecutions: false
+          payloadConditions:
+            - key: targetBranch
+              operator: Equals
+              value: main
+          headerConditions: []
+          repoName: ${REPOSITORY}
+          actions: []

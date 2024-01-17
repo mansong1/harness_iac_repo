@@ -1,0 +1,36 @@
+
+  spec:
+    properties:
+      ci:
+        codebase:
+          connectorRef: account.Github
+          repoName: ${REPOSITORY_NAME}
+          build: <+input>
+    stages:
+      - stage:
+          name: Build
+          identifier: Build
+          description: ""
+          type: CI
+          spec:
+            cloneCodebase: true
+            platform:
+              os: Linux
+              arch: Amd64
+            runtime:
+              type: Cloud
+              spec: {}
+            execution:
+              steps:
+                - step:
+                    type: Run
+                    name: Echo
+                    identifier: Echo
+                    spec:
+                      shell: Sh
+                      command: |-
+                        echo "Hello, World!"
+
+                        echo "Welcome to Harness, <+project.name> in <+org.name>"
+            slsa_provenance:
+              enabled: false
